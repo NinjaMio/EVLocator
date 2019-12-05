@@ -1,1 +1,7 @@
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+.navbar {
+  background: image_url('topnav.png');
+  box-shadow: 0px 1px 3px #2a2a2a;
+  font-family: 'Fredoka One', cursive;
+}
