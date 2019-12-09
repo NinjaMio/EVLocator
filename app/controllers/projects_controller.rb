@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   
   def index
+    @projects = Project.all
   end
 
   def new
@@ -20,6 +21,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:name, :description, :picture)
   end
 end

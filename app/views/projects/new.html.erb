@@ -1,7 +1,13 @@
-<h1>Add a new project</h1>
-
-<%= simple_form_for @gram do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.submit "Add Project" %>
-<% end %>
+<br />
+<div class="booyah-box col-10 offset-1">
+  <h1>Add a new Project</h1>
+  <%= simple_form_for @project do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :picture %>
+    <br />
+    <%= f.submit "Create", class: 'btn btn-primary' %>
+    <br />
+  <% end %>
+  <br />
+</div>
