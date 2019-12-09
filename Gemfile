@@ -84,3 +84,7 @@ gem 'awesome_print'
 gem "font-awesome-rails"
 
 gem 'carrierwave', '~> 2.0'
+
+gem "figaro"
+
+gem "fog-aws"
