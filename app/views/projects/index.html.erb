@@ -1,8 +1,21 @@
-<h1>Grams!</h1>
-
-<% @projects.each do |project| %>
-<div>
-  <%= project.name %>
-  <<%= image_tag project.picture.url, class: 'img-fluid' %>
+<br />
+<div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+  <% @projects.each do |project| %>
+  <div class="card">
+    <%= image_tag project.picture.url, class: 'img-fluid' %>
+    <p>
+      <%= link_to project.name, project_path(project) %>
+    </p>
+    <% if project.description.present? %>
+      <small><%= project.description %></small>
+    <% end %>
+    <div class="project-actions float-right">
+      <% if current_user && current_user == project.user %>
+        <%= link_to 'Edit', edit_project_path(project) %>
+        <%= link_to 'Destroy', project_path(project), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <% end %>
+    </div>
+    <br class="clear-fix" />
+  </div>
+  <% end %>
 </div>
-<% end %>

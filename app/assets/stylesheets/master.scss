@@ -1,10 +1,19 @@
 @import "bootstrap";
 @import "font-awesome";
-@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+body {
+  background-color: #fafafa;
+  font-family: 'Indie Flower', cursive;
+}
+
+ul {
+  list-style-type: none;
+}
 .navbar {
   background: image_url('topnav.png');
   box-shadow: 0px 1px 3px #2a2a2a;
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Audiowide', cursive;
   margin-bottom: 0;
 }
 
@@ -24,6 +33,14 @@
     clear: both;
 }
 
+.my-btn {
+  background-color: #125688;
+  width: 100%;
+  border: none;
+  font-size: 24px;
+  color: white;
+  margin-top: 10px;
+}
 
 .card-img-top {
     width: 100%;
@@ -59,7 +76,10 @@ img {
     border: 0;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
 .card {
     position: relative;
     display: -ms-flexbox;
@@ -92,20 +112,7 @@ img {
     font-size: 1.25rem;
     line-height: 47px;
 }
-.fa, .fas {
-    font-weight: 900;
-}
-.fa, .far, .fas {
-    font-family: "Font Awesome 5 Free";
-}
-.fa, .fab, .fad, .fal, .far, .fas {
 
-    -webkit-font-smoothing: antialiased;
-
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-}
 .btn-floating {
     position: relative;
     z-index: 1;
