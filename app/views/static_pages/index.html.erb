@@ -1,54 +1,56 @@
-<!-- <script>
-  $('.carousel.carousel-multi-item.v-2 .carousel-item').each(function(){
-    var next = $(this).next();
-    if (!next.length) {
-      next = $(this).siblings(':first');
-    }
-    next.children(':first-child').clone().appendTo($(this));
-
-    for (var i=0;i<4;i++) {
-      next=next.next();
-      if (!next.length) {
-        next=$(this).siblings(':first');
-      }
-      next.children(':first-child').clone().appendTo($(this));
-    }
+<script>
+  $(function() {
+    var button = $('#clickbutton')
+    button.click(function() {
+      var myH1 = $('#addressline')
+      var val = $('#test')
+      myH1.html(val)
+    });
   });
-</script> -->
+</script>
+<div class="booyah-box col-10 offset-1" id="addressline">
+  Hello
+</div>
+</br>
 <div class="booyah-box col-10 offset-1">
-  <div id="carousel-example-multi" class="carousel slide carousel-multi-item v-2" data-ride="carousel">
+  <div id="carousel-example-multi" class="carousel slide" data-ride="carousel">
 
-    <!--Controls-->
+  <!--Controls-->
     <div class="controls-top">
-      <a class="btn-floating" href="#carousel-example-multi" data-slide="prev"><i
-          class="fas fa-chevron-left"></i></a>
-      <a class="btn-floating" href="#carousel-example-multi" data-slide="next"><i
-          class="fas fa-chevron-right"></i></a>
+      <a class="btn-floating" href="#carousel-example-multi" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <i class="fas fa-chevron-left"></i>
+      </a>
+      <a class="btn-floating" href="#carousel-example-multi" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <i class="fas fa-chevron-right"></i>
+      </a>
     </div>
-    <!--/.Controls-->
+  <!--/.Controls-->
 
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <% @projects.each_with_index do |project, index| %> 
-      <li data-target="#carousel-example-multi" data-slide-to=#{index} <%= index == 0 ? 'class="active"' : '' %>></li>
+  <!--Indicators-->
+  <ol class="carousel-indicators">
+    <% @projects.each_with_index do |project, index| %> 
+    <li data-target="#carousel-example-multi" data-slide-to=<%=index%> <%= index == 0 ? 'class="active"' : '' %>></li>
 
-      <% end %>
-    </ol> -->
-    <!--/.Indicators-->
+    <% end %>
+  </ol>
+  <!--/.Indicators-->
 
-    <div class="carousel-inner v-2" role="listbox">
-
-      <!-- <div class="carousel-item active"> -->
+    <div class="carousel-inner" role="listbox">
       <% @projects.each_with_index do |project, index| %>
-        <div class="item <%= index == 0 ? 'active' : '' %>"> 
+        <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+          <div class="invisible" id="showname"> <%= project.name %> </div>
           <div class="col-12 col-md-4">                                          
             <div class="card mb-2">
               <%= image_tag project.picture.url, class: "card-img-top" %>
               <div class="card-body">
-                <h4 class="card-title font-weight-bold text-center">Card title</h4>
+                <h4 class="card-title font-weight-bold text-center" id="test">
+                  <%= project.name %>
+                </h4>
                 <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the
                   card's content.</p>
-                <a class="btn btn-primary btn-md btn-rounded text-center">Button</a>
+                <a class="btn btn-primary btn-md btn-rounded text-center" id="clickbutton">Button</a>
               </div>
             </div>
           </div>
