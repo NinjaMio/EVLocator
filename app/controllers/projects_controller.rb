@@ -49,6 +49,7 @@ class ProjectsController < ApplicationController
     return render_not_found(:forbidden) if @project.user != current_user
 
     @project.destroy
+
     redirect_to root_path
   end
 

@@ -1,0 +1,15 @@
+<br />
+<div class="booyah-box col-10 offset-1">
+  <h1>Add a new Place</h1>
+  <%= simple_form_for @place do |f| %>
+    <%= f.input :placename %>
+    <%= f.input :address %>
+    <%= f.input :project_id do %>
+      <%= f.collection_select :project_id, Project.order(:name),:id,:name, include_blank: false %>
+    <% end %>
+    <br />
+    <%= f.submit 'Create', class: 'my-btn' %>
+    <br />
+  <% end %>
+  <br />
+</div>

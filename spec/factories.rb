@@ -13,5 +13,12 @@ FactoryBot.define do
 
     association :user
   end
+
+  factory :place do
+    placename { "restaurant" }
+    address { "Address Sample" }
+
+    association :user
+  end
 end
 

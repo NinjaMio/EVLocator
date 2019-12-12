@@ -5,8 +5,14 @@
   <h2>What will you do today?</h2>
   <ul>
     <li>
-      <i class="fa fa-plus-circle"></i>
-      I want to add a new location
+      <%= link_to new_place_path, class: 'nav-link' do %>
+        <i class="fa fa-plus-circle"></i>
+        I want to add a new place
+      <% end %>
+      <%= link_to projects_path, class: 'nav-link' do %>
+        <i class="fa fa-plus-circle"></i>
+        I want to view all projects
+      <% end %>
     </li>
   </ul>
 </div>
