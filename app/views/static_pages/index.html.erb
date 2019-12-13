@@ -1,63 +1,105 @@
+
+
 <script>
-  $(function() {
-    var button = $('#clickbutton')
-    button.click(function() {
-      var myH1 = $('#addressline')
-      var val = $('#test')
-      myH1.html(val)
+    var markers = [];
+    var evMap = null;
+    $( document ).ready(function() {
+      console.log( "ready!" );
+      var button = $('.clickbutton')
+      button.click(function(e) {
+        console.log("hi")
+        drawMap($(this).data("locations"))
+      });
     });
-  });
+    function initMap(){
+      var initPlaces = $($(".clickbutton")[0]).data("locations")
+
+      evMap = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: { lat: initPlaces[0][0], lng: initPlaces[0][1] }
+      });
+
+      drawMap(initPlaces);
+
+    }
+
+    function drawMap(places) { 
+      for(var i = 0; i < markers.length; i++){
+        markers[i].setMap(null);
+      }
+      markers = [];
+      for(var i = 0; i < places.length; i++){
+        var marker = new google.maps.Marker({
+          position: { lat: places[i][0], lng: places[i][1] },
+          map: evMap
+
+        });
+        markers.push(marker)
+      }
+      console.log(markers)
+
+    }
+
+
+    // var initialMapData = $($(".clickbutton")[0]).data("locations")
+
+    // drawMap(initialMapData)
+
+
 </script>
-<div class="booyah-box col-10 offset-1" id="addressline">
-  Hello
-</div>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GEOCODER_API_KEY']%>&callback=initMap">
+</script>
+
+<div id="map"></div>
 </br>
-<div class="booyah-box col-10 offset-1">
-  <div id="carousel-example-multi" class="carousel slide" data-ride="carousel">
 
-  <!--Controls-->
-    <div class="controls-top">
-      <a class="btn-floating" href="#carousel-example-multi" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <i class="fas fa-chevron-left"></i>
-      </a>
-      <a class="btn-floating" href="#carousel-example-multi" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <i class="fas fa-chevron-right"></i>
-      </a>
-    </div>
-  <!--/.Controls-->
+<div id="carousel-example-multi" class="carousel slide" data-ride="carousel" data-interval="false">
 
-  <!--Indicators-->
-  <ol class="carousel-indicators">
-    <% @projects.each_with_index do |project, index| %> 
-    <li data-target="#carousel-example-multi" data-slide-to=<%=index%> <%= index == 0 ? 'class="active"' : '' %>></li>
+<!--Controls-->
+  <div class="controls-top">
+    <a class="btn-floating" href="#carousel-example-multi" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <i class="fas fa-chevron-left"></i>
+    </a>
+    <a class="btn-floating" href="#carousel-example-multi" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <i class="fas fa-chevron-right"></i>
+    </a>
+  </div>
+<!--/.Controls-->
 
-    <% end %>
-  </ol>
-  <!--/.Indicators-->
+<!--Indicators-->
+<ol class="carousel-indicators">
+  <% @projects.each_with_index do |project, index| %> 
+  <li data-target="#carousel-example-multi" data-slide-to=<%=index%> <%= index == 0 ? 'class="active"' : '' %>></li>
 
-    <div class="carousel-inner" role="listbox">
-      <% @projects.each_with_index do |project, index| %>
-        <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-          <div class="invisible" id="showname"> <%= project.name %> </div>
-          <div class="col-12 col-md-4">                                          
-            <div class="card mb-2">
-              <%= image_tag project.picture.url, class: "card-img-top" %>
-              <div class="card-body">
-                <h4 class="card-title font-weight-bold text-center" id="test">
-                  <%= project.name %>
-                </h4>
-                <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary btn-md btn-rounded text-center" id="clickbutton">Button</a>
-              </div>
+  <% end %>
+</ol>
+<!--/.Indicators-->
+
+  <div class="carousel-inner" role="listbox">
+    <% @projects.each_with_index do |project, index| %>
+      <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+        <div class="invisible" id="showname"> <%= project.name %> </div>
+        <div class="col-12 col-md-4">                                          
+          <div class="card mb-2">
+            <!-- <%= image_tag project.picture.url, class: "card-img-top" %> -->
+            <div class="card-body">
+              <h4 class="card-title font-weight-bold text-center" id="test">
+                <%= project.name %>
+              </h4>
+              <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a class="btn btn-primary btn-md btn-rounded text-center clickbutton" data-locations="<%= project.places.map{|place| [place.latitude, place.longitude]} %>">Click me to show locations</a>
             </div>
           </div>
         </div>
-      <% end %>
-
-    </div>
+      </div>
+    <% end %>
 
   </div>
+
 </div>
+
