@@ -11,13 +11,15 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find_by_id(params[:id])
+    @places = @project.places.all
+    gon.places = @project.places.all
     return render_not_found if @project.blank?
   end
 
   def create
     @project = current_user.projects.create(project_params)
     if @project.valid?
-      redirect_to root_path
+      redirect_to administration_path
     else
       render :new, status: :unprocessable_entity
     end

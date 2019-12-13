@@ -156,7 +156,7 @@ RSpec.describe ProjectsController, type: :controller do
             picture: fixture_file_upload("/picture.png", 'image/png')
           }
         }
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to administration_path
 
       project = Project.last
       expect(project.name).to eq("Hello!")

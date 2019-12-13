@@ -90,3 +90,5 @@ gem "figaro"
 gem "fog-aws"
 
 gem "geocoder"
+
+gem 'gon'

@@ -29,8 +29,43 @@ ul {
   padding: 15px;
 }
 
+.booyah-box h2, .booyah-box h1 {
+  margin: 10px;
+}
+
 .clear {
     clear: both;
+}
+
+.alert {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: red;
+    text-align: center;
+}
+
+.notice {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #1FDEB0;
+    text-align: center;
+}
+
+.invalid-feedback {
+  color: #ff3333;
+  background-color: #FFEEEE;
+  border-radius: 3px;
+  padding: 2px 8px 2px 8px;
+  margin: 10px;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
 }
 
 // .invisible {
