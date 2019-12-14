@@ -2,6 +2,11 @@
 @import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Audiowide&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+html, body {
+    height: 100%;
+}
+
 body {
   background-color: #fafafa;
   font-family: 'Indie Flower', cursive;
@@ -64,7 +69,7 @@ ul {
 }
 
 #map {
-    height: 400px;
+    height: 50%;
     width: 100%;
 }
 
@@ -98,12 +103,28 @@ img {
     border-radius: 0 !important;
     flex: 1 1 auto;
     padding: 1.25rem;
+    text-align: center;
 }
 
 .card-title {
     margin-bottom: 0.75rem;
 }
 
+.controls-top  {
+    text-align: center;
+}
+
+.controls-top a {
+    background-color: #F7941D
+}
+
+.controls-top .carousel-control-next-icon {
+margin: 13px 0px 0px 7px;
+}
+
+.controls-top .carousel-control-prev-icon {
+margin: 13px 0px 7px 0px;
+}
 .card .card-body .card-text {
     font-size: .9rem;
     font-weight: 400;
