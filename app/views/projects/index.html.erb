@@ -4,7 +4,7 @@
   <div class="card">
     <%= image_tag project.picture.url, class: 'img-fluid' %>
     <p>
-      <%= link_to project.name, project_path(project) %>
+      <%= link_to project.name, project_path(project), class: 'text-center' %>
     </p>
     <% if project.description.present? %>
       <small><%= project.description %></small>

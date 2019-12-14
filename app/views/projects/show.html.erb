@@ -1,35 +1,32 @@
 <br />
 <%= include_gon %>
-<div class="booyah-box col-10 offset-1">
+<div class="booyah-box col-10 offset-1 text-center">
   <h1><%= @project.name %></h1>
   <i><%= @project.description %></i>
   <br/><br/>
-  
-  <% if @places.first.latitude.present? && @places.first.longitude.present? %>
-    <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: { lat: gon.places[0].latitude, lng: gon.places[0].longitude }
+  <script>
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: { lat: gon.places[0].latitude, lng: gon.places[0].longitude }
+      });
+
+
+      for(var i = 0; i < gon.places.length; i++){
+        new google.maps.Marker({
+          position: { lat: gon.places[i].latitude, lng: gon.places[i].longitude },
+          title: gon.places[i].placename,
+          map: map
         });
-
-
-        for(var i = 0; i < gon.places.length; i++){
-          new google.maps.Marker({
-            position: { lat: gon.places[i].latitude, lng: gon.places[i].longitude },
-            title: gon.places[i].placename,
-            map: map
-          });
-        }
       }
-    </script>
+    }
+  </script>
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GEOCODER_API_KEY']%>&callback=initMap">
-    </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GEOCODER_API_KEY']%>&callback=initMap">
+  </script>
 
-    <div id="map"></div>
-  <% end %>
+  <div id="map"></div>
 </div>
 
 <div class="clear"></div>
