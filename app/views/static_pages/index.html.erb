@@ -47,11 +47,11 @@ src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GEOCODER_API_KEY']%>&ca
 </script>
 <div id="map"></div>
 
-<div class="col-8 offset-2 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+<div class="col-6 offset-3 col-sm-6 offset-sm-3 col-md-6 offset-md-3">
 <div id="carousel-example-multi" class="carousel slide" data-ride="carousel" data-interval="false">
 
 <!--Controls-->
-  <div class="controls-top">
+<!--   <div class="controls-top">
     <a class="btn-floating" href="#carousel-example-multi" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <i class="fa fa-plus-circle"></i>
@@ -60,7 +60,7 @@ src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GEOCODER_API_KEY']%>&ca
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <i class="fas fa-chevron-right"></i>
     </a>
-  </div>
+  </div> -->
 <!--/.Controls-->
 
 <!--Indicators-->
@@ -77,14 +77,25 @@ src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GEOCODER_API_KEY']%>&ca
       <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
         <div class="col-12 col-md-4">                                          
           <div class="card mb-2">
-              <%= image_tag project.picture.url, class: "card-img-top" %>
+              <div class="card-img-top" style="background-image:url(<%= image_url project.picture.url %>)">
+              </div>
+
             <div class="card-body">
               <h4 class="card-title font-weight-bold text-center" id="test">
+                <a class="btn-floating" href="#carousel-example-multi" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <i class="fa fa-plus-circle"></i>
+                </a>
                 <%= project.name %>
+                <a class="btn-floating" href="#carousel-example-multi" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <i class="fas fa-chevron-right"></i>
+                </a>
               </h4>
-              <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk of the
-                card's content.</p>
-              <a class="btn btn-primary btn-md btn-rounded text-center clickbutton" data-locations="<%= project.places.map{|place| [place.latitude, place.longitude]} %>">Click me to show locations</a>
+              <a class="btn btn-primary btn-md btn-rounded text-center clickbutton" data-locations="<%= project.places.map{|place| [place.latitude, place.longitude]} %>">Show me the locations</a>
+              <p class="card-text text-center">
+                <%= project.description %>
+              </p>
             </div>
           </div>
         </div>
